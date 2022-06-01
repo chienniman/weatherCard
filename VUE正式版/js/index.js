@@ -37,7 +37,7 @@ const app=Vue.createApp({
                 // 最低溫度
                 let low = result.weatherElement.find(el => el.elementName === 'MinT').time[this.time].elementValue.value
                 // 天氣狀況描述
-                let weather = result.weatherElement.find(el => el.elementName === 'Wx').time[this.time].elementValue[this.time].value
+                let weather = result.weatherElement.find(el => el.elementName === 'Wx').time[this.time].elementValue[0].value
                 // 預測降雨機率
                 let probability=result.weatherElement.find(el => el.elementName === 'PoP12h').time[this.time].elementValue.value
                 // 紫外線指數
