@@ -1,0 +1,16 @@
+T,平均溫度 
+Td,平均露點溫度
+RH,平均相對濕度
+MaxT,最高溫度
+MinT,最低溫度
+MaxAT,最高體感溫度
+MinAT,最低體感溫度
+MaxCI,最大舒適度指數
+MinCI,最小舒適度指數
+PoP12h,12小時降雨機率
+風向,WD
+WS,最大風速
+Wx,天氣現象"
+UVI,紫外線指數
+WeatherDescription,天氣預報綜合描述
+

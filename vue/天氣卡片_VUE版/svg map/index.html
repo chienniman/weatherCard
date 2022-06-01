@@ -205,6 +205,7 @@
                 <h5>{{now_area.place}}</h5>
                 <h4>{{now_area.low}}~{{now_area.high}}</h4>
                 <h2>{{now_area.weather}}</h2>
+                <h2>{{now_area.probability}}</h2>
             </div>
 
         </div>
@@ -478,7 +479,7 @@
             axios.get(url).then(data => {
                  this.weather_data = data.data.cwbopendata.dataset.locations.location
                 // this.weather_data = data.data.records.location;
-                console.log(this.weather_data );
+                console.log(this.weather_data);
             })
             paths = document.querySelectorAll('path');
             let _this = this
@@ -498,18 +499,25 @@
         computed: {
             now_area() {
                 let data = {}
+                // 用縣市名找到該筆資料
                 let result = this.weather_data.find((obj) => {
                     return obj.locationName === this.filter
                 })
                 if (result) {
+                    // 最高溫度
                     let high = result.weatherElement.find(el => el.elementName === 'MaxT').time[0].elementValue.value
+                    // 最低溫度
                     let low = result.weatherElement.find(el => el.elementName === 'MinT').time[0].elementValue.value
+                    // 天氣狀況描述
                     let weather = result.weatherElement.find(el => el.elementName === 'Wx').time[0].elementValue[0].value
+                    // 預測降雨機率
+                    let probability=result.weatherElement.find(el => el.elementName === 'PoP12h').time[0].elementValue.value
                     data = {
                         place: this.filter,
                         low: low,
                         high: high,
-                        weather: weather
+                        weather: weather,
+                        probability:probability
                     }
                 }
                 return data
