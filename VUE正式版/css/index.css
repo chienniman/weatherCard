@@ -1,0 +1,11 @@
+body {
+  background-image: url("../pics/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  padding-top: 300px;
+}
+/*# sourceMappingURL=index.css.map */

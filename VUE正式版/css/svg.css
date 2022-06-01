@@ -1,0 +1,35 @@
+:root {
+    --color-gold: #82eb0a;
+}
+/* #app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 100%;
+    height: 100%;
+} */
+svg {
+    width: 400px;
+   
+}
+path {
+    stroke: black;
+    fill: transparent;
+    transition: 0.5s;
+    cursor: pointer;
+}
+path:hover {
+    fill: var(--color-gold);
+    transform: translate(-5px, -5px);
+}
+.title_area {
+    flex: 2;
+    margin-right: 3vw;
+    margin-top: -5vh;
+    color: black;
+    font-size: 20px;
+}
