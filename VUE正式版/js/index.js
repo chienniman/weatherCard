@@ -61,6 +61,7 @@ const app=Vue.createApp({
         }
     },
     methods:{
+        // 判斷紫外線危害程度函式
         Ultra_violet_index:function(UVI){
             if(UVI>0 && UVI<2){
                 return "低量級"
