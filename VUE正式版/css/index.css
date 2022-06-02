@@ -8,4 +8,30 @@ body {
 .wrapper {
   padding-top: 300px;
 }
+
+#map .UIV-icon .icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+#map .UIV-icon .low {
+  background: greenyellow;
+}
+
+#map .UIV-icon .med {
+  background: yellow;
+}
+
+#map .UIV-icon .high {
+  background: gold;
+}
+
+#map .UIV-icon .extra {
+  background: red;
+}
+
+#map .UIV-icon .danger {
+  background: purple;
+}
 /*# sourceMappingURL=index.css.map */

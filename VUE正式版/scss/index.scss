@@ -7,3 +7,27 @@ body{
 .wrapper{
     padding-top: 300px;
 }
+#map{
+    .UIV-icon{
+        .icon{
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+        .low{
+            background: greenyellow;
+        }
+        .med{
+            background: yellow;
+        }
+        .high{
+            background: gold;
+        }
+        .extra{
+            background: red;
+        }
+        .danger{
+            background: purple;
+        }
+    }
+}

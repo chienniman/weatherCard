@@ -429,8 +429,20 @@
               <h5>{{ now_city.place}}</h5>
               <h4>{{ now_city.low}}°C~{{now_city.high}}°C</h4>
               <h2>{{ now_city.weather}}</h2>
+              <div>
+                <img :src="weather_img" alt="">
+              </div>
               <h2>降雨機率{{now_city.probability}}%</h2>
-              <h2>紫外線指數{{now_city.UVI}}</h2>
+              <div class="d-flex align-items-center">
+                <h2>紫外線指數{{ Ultra_violet_index(now_city.UVI)}}</h2>
+                <div class="UIV-icon align-items-center">
+                  <div v-if="Ultra_violet_index(now_city.UVI)=='低量級'" class="icon low"></div>
+                  <div v-if="Ultra_violet_index(now_city.UVI)=='中量級'" class="icon med"></div>
+                  <div v-if="Ultra_violet_index(now_city.UVI)=='高量級'" class="icon high"></div>
+                  <div v-if="Ultra_violet_index(now_city.UVI)=='過量級'" class="icon extra"></div>
+                  <div v-if="Ultra_violet_index(now_city.UVI)=='危險級'" class="icon danger"></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
