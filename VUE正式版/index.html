@@ -472,6 +472,12 @@
                   </li>
                 </ul>
               </div>
+            </div>
+            <div class="d-flex mt-3">
+              <p class="m-0 pt-1 fs-3">按照地區選擇</p>
+              <div v-for="city in all_data" class="d-flex flex-wrap">
+                <button type="button" class="btn btn-primary p-0 me-3" @click="select_cities(city.index)">{{city.name}}</button>
+              </div>
             </div>  
             <div class="wrapper row d-flex justify-content-center">
                 <div v-for="item in temp_data" class="card mb-3 bg-light me-3" style="width: 18rem">

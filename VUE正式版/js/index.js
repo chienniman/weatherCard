@@ -10,11 +10,11 @@ const app = Vue.createApp({
       weather_data: [],
       temp_data: [],
       all_data: [
-        { name: "北部區域", north_data: [2,3,13,14,16,18,21] },
-        { name: "中部區域", mid_data: [4,5,6,7,19] },
-        { name: "南部區域", south_data: [8,9,12,15,17,20] },
-        { name: "東部區域", east_data: [10,11] },
-        { name: "離島區域", island_data: [0,1] },
+        { name: "北部區域", index: [2,3,13,14,16,18,21] },
+        { name: "中部區域", index: [4,5,6,7,19] },
+        { name: "南部區域", index: [8,9,12,15,17,20] },
+        { name: "東部區域", index: [10,11] },
+        { name: "離島區域", index: [0,1] },
       ],
       week: [
         { time: [0, 1] },
@@ -124,17 +124,6 @@ const app = Vue.createApp({
     all_cities: function () {
       this.temp_data = JSON.parse(JSON.stringify(this.weather_data));
     },
-    // select_north_cities:function(){
-    //     let arr=[];
-    //     let north_index=[2,3,13,14,16,18,21]
-    //     let north=JSON.parse(JSON.stringify(this.weather_data));
-    //     north.forEach((loc,index)=>{
-    //         if(north_index.indexOf(index)!=-1){
-    //             arr.push(loc)
-    //         }
-    //     })
-    //     this.temp_data=JSON.parse(JSON.stringify(arr));
-    // },
     select_cities: function (cities) {
       let arr = [];
       let north = JSON.parse(JSON.stringify(this.weather_data));
