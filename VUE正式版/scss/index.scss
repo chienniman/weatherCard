@@ -8,6 +8,19 @@ body{
     padding-top: 300px;
 }
 #map{
+    .map_and_card{
+        z-index: 100000;
+        position: sticky;
+        top: 100px;
+        .weather_card{
+            display: none;
+        }
+        &:hover{
+            .weather_card{
+                display: block;
+            } 
+        }
+    }
     .UIV-icon{
         .icon{
             width: 20px;

@@ -13,13 +13,15 @@
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
   </head>
   <body>
     <div id="app">
       <div class="row">
-        <section class="col-3" id="map">
-          <svg
+        <section  class="col-3" id="map">
+          <div class="map_and_card">
+            <svg
             id="cf503461-00bd-459a-aeb5-062ebc913211"
             data-name="圖層 1"
             xmlns="http://www.w3.org/2000/svg"
@@ -424,37 +426,42 @@
               />
             </g>
           </svg>
-          <div class="title_area">
-            <div class="forcast" v-if="now_city">
-              <h5>{{ now_city.place}}</h5>
-              <h4>{{ now_city.low}}°C~{{now_city.high}}°C</h4>
-              <h2>{{ now_city.weather}}</h2>
-              <div>
-                <img :src="weather_img" alt="">
-              </div>
-              <h2>降雨機率{{now_city.probability}}%</h2>
-              <div class="d-flex align-items-center">
-                <h2>紫外線指數{{ Ultra_violet_index(now_city.UVI)}}</h2>
-                <div class="UIV-icon align-items-center">
-                  <div v-if="Ultra_violet_index(now_city.UVI)=='低量級'" class="icon low"></div>
-                  <div v-if="Ultra_violet_index(now_city.UVI)=='中量級'" class="icon med"></div>
-                  <div v-if="Ultra_violet_index(now_city.UVI)=='高量級'" class="icon high"></div>
-                  <div v-if="Ultra_violet_index(now_city.UVI)=='過量級'" class="icon extra"></div>
-                  <div v-if="Ultra_violet_index(now_city.UVI)=='危險級'" class="icon danger"></div>
+          <div>
+            <div class="weather_card card ms-5" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{now_city.place}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ now_city.low}}°C~{{now_city.high}}°C</h6>
+                <p class="card-text">{{ now_city.weather}}</p>
+                <div>
+                  <img :src="weather_img" alt="">
+                </div>       
+                <h2 v-if=now_city.probability!=null>降雨機率{{now_city.probability}}%</h2>
+                <h2 v-if=now_city.probability==null>降雨機率(未知)</h2>
+                <div class="d-flex align-items-center">
+                  <h2>紫外線指數{{ Ultra_violet_index(now_city.UVI)}}</h2>
+                  <div class="UIV-icon align-items-center">
+                    <div v-if="Ultra_violet_index(now_city.UVI)=='低量級'" class="icon low"></div>
+                    <div v-if="Ultra_violet_index(now_city.UVI)=='中量級'" class="icon med"></div>
+                    <div v-if="Ultra_violet_index(now_city.UVI)=='高量級'" class="icon high"></div>
+                    <div v-if="Ultra_violet_index(now_city.UVI)=='過量級'" class="icon extra"></div>
+                    <div v-if="Ultra_violet_index(now_city.UVI)=='危險級'" class="icon danger"></div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </section>
         <section class="col-9" id="selector">
           <div class="container">
             <div class="d-flex">
               <p class="m-0 pt-3 fs-3">按照時間選擇</p>
+              <button @click=" select_north_cities()">123</button>
               <div v-for="(day,index) in week" class="dropdown ms-1 me-1 mt-3">
                 <a class="btn btn-secondary dropdown-toggle d-flex" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   第{{index+1}}天
                   <p class="m-0" v-show="index==0">
-                    (當前預設)
+                    (預設今天)
                   </p>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -468,33 +475,32 @@
               </div>
             </div>  
             <div class="wrapper row d-flex justify-content-center">
-                <div v-for="item in weather_data" class="card mb-3 bg-light me-3" style="width: 18rem">
+                <div v-for="item in temp_data" class="card mb-3 bg-light me-3" style="width: 18rem">
                     <div class="card-body bg-light">
+                      <div>
+                        <img :src="weather_img_path(item.weatherElement[12].time[time].elementValue[1].value)" alt="">
+                      </div>
                       <h2 class="card-title">
                         <i class="bi bi-house-door me-1"></i>{{item.locationName}}
                       </h2>
                       <p class="card-text">
-                        <i class="bi bi-calendar-check-fill me-3"></i>{{}}
+                        <i class="bi bi-cloud-sun me-3"></i>天氣現象:{{item.weatherElement[12].time[time].elementValue[0].value}}
                       </p>
                       <p class="card-text">
-                        <i class="bi bi-calendar-check me-3"></i>{{}}
+                        <i class="bi bi-cloud-drizzle-fill me-3"></i>降雨機率:{{item.weatherElement[9].time[time].elementValue.value}}%
                       </p>
                       <p class="card-text">
-                        <i class="bi bi-cloud-sun me-3"></i>天氣現象:{{}}
+                        <i class="bi bi-thermometer me-3"></i>溫度:{{item.weatherElement[4].time[time].elementValue.value}}~{{item.weatherElement[3].time[time].elementValue.value}}°C
                       </p>
                       <p class="card-text">
-                        <i class="bi bi-cloud-drizzle-fill me-3"></i>降雨機率:{{}}%
+                        <i class="bi bi-thermometer me-3"></i>體感溫度:{{item.weatherElement[6].time[time].elementValue.value}}~{{item.weatherElement[5].time[time].elementValue.value}}°C
                       </p>
                       <p class="card-text">
-                        <i class="bi bi-thermometer me-3"></i>最低溫度:{{}}°C
+                        <i class="bi bi-person-check me-3"></i>舒適度:{{item.weatherElement[8].time[time].elementValue[1].value}}~{{item.weatherElement[7].time[time].elementValue[1].value}}
                       </p>
                       <p class="card-text">
-                        <i class="bi bi-thermometer-high me-3"></i>最高溫度:{{}}°C
+                        <i class="bi bi-calendar-check me-3"></i>風速:{{item.weatherElement[11].time[time].elementValue[0].value}}公尺/秒
                       </p>
-                      <p class="card-text">
-                        <i class="bi bi-person-check me-3"></i>舒適度:{{}}
-                      </p>
-                      <p class="card-text"><img src="" alt="" /></p>
                     </div>
                   </div>
             </div>

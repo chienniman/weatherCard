@@ -10,6 +10,11 @@ const app = Vue.createApp({
       weather_data: [],
       temp_data: [],
       all_data: [],
+      north_data:[],
+      mid_data:[],
+      south_data:[],
+      east_data:[],
+      island_data:[],
       week: [
         {time: [0, 1] },
         {time: [2, 3] },
@@ -24,15 +29,17 @@ const app = Vue.createApp({
   mounted() {
     axios.get(url).then((data) => {
       this.weather_data = data.data.cwbopendata.dataset.locations.location;
-      console.log(this.weather_data);
+      this.temp_data = JSON.parse(JSON.stringify(this.weather_data))
+      console.log(this.temp_data);
     });
     paths = document.querySelectorAll("path");
     let _this = this;
     paths.forEach((e) => {
-      e.onmouseover = function () {
+      e.onmouseover = function () {   
         _this.filter = this.dataset.nameZh;
       };
     });
+    
   },
   computed: {
     // 顯示台灣地圖上的城鎮資訊
@@ -105,10 +112,29 @@ const app = Vue.createApp({
     change_weather_card_img: function (val) {
       this.weather_img = `./pics/weather-imgs/${val}.svg`;
     },
+    // 依照不同天氣現象回傳圖片路徑
+    weather_img_path:function(val){
+        return `./pics/weather-imgs/${val}.svg`;
+    },
+    // 更改日期
     change_date: function (date) {
       this.time = date;
-      console.log(date);
     },
+    // 更改地區
+    north_cities(loc){
+        return loc==2||loc==3||loc==13||loc==14||loc==16||loc==18||loc==21;
+    },
+    select_north_cities:function(){
+        let arr=[];
+        let north_index=[2,3,13,14,16,18,21]
+        let north=JSON.parse(JSON.stringify(this.weather_data));
+        north.forEach((loc,index)=>{
+            if(north_index.indexOf(index)!=-1){
+                arr.push(loc)
+            }
+        })
+        this.temp_data=JSON.parse(JSON.stringify(arr));
+    }
   },
 });
 app.mount("#app");
