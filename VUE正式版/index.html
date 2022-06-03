@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>天氣卡片</title>
+    <title>一周天氣詳細資料查詢系統-去找吧，想要的資訊都放在這裡了</title>
     <link rel="stylesheet" href="./css/svg.css" />
     <link rel="stylesheet" href="./css/index.css" />
     <link
@@ -448,6 +448,25 @@
         </section>
         <section class="col-9" id="selector">
           <div class="container">
+            <div class="d-flex">
+              <p class="m-0 pt-3 fs-3">按照時間選擇</p>
+              <div v-for="(day,index) in week" class="dropdown ms-1 me-1 mt-3">
+                <a class="btn btn-secondary dropdown-toggle d-flex" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  第{{index+1}}天
+                  <p class="m-0" v-show="index==0">
+                    (當前預設)
+                  </p>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li @click="change_date(day.time[0])">
+                    <a class="dropdown-item" href="#">近12小時</a>
+                  </li>
+                  <li @click="change_date(day.time[1])">
+                    <a class="dropdown-item" href="#">近24小時</a>
+                  </li>
+                </ul>
+              </div>
+            </div>  
             <div class="wrapper row d-flex justify-content-center">
                 <div v-for="item in weather_data" class="card mb-3 bg-light me-3" style="width: 18rem">
                     <div class="card-body bg-light">
@@ -483,6 +502,7 @@
         </section>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="./js/index.js"></script>
   </body>
