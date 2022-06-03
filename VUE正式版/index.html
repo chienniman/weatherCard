@@ -454,9 +454,8 @@
         </section>
         <section class="col-9" id="selector">
           <div class="container">
-            <div class="d-flex">
+            <div class="d-flex flex-wrap">
               <p class="m-0 pt-3 fs-3">按照時間選擇</p>
-              <button @click=" select_north_cities()">123</button>
               <div v-for="(day,index) in week" class="dropdown ms-1 me-1 mt-3">
                 <a class="btn btn-secondary dropdown-toggle d-flex" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   第{{index+1}}天

@@ -9,37 +9,37 @@ const app = Vue.createApp({
       paths: [],
       weather_data: [],
       temp_data: [],
-      all_data: [],
-      north_data:[],
-      mid_data:[],
-      south_data:[],
-      east_data:[],
-      island_data:[],
+      all_data: [
+        { name: "北部區域", north_data: [2,3,13,14,16,18,21] },
+        { name: "中部區域", mid_data: [4,5,6,7,19] },
+        { name: "南部區域", south_data: [8,9,12,15,17,20] },
+        { name: "東部區域", east_data: [10,11] },
+        { name: "離島區域", island_data: [0,1] },
+      ],
       week: [
-        {time: [0, 1] },
-        {time: [2, 3] },
-        {time: [4, 5] },
-        {time: [6, 7] },
-        {time: [8, 9] },
-        {time: [10,11] },
-        {time: [12,13] },
+        { time: [0, 1] },
+        { time: [2, 3] },
+        { time: [4, 5] },
+        { time: [6, 7] },
+        { time: [8, 9] },
+        { time: [10, 11] },
+        { time: [12, 13] },
       ],
     };
   },
   mounted() {
     axios.get(url).then((data) => {
       this.weather_data = data.data.cwbopendata.dataset.locations.location;
-      this.temp_data = JSON.parse(JSON.stringify(this.weather_data))
+      this.temp_data = JSON.parse(JSON.stringify(this.weather_data));
       console.log(this.temp_data);
     });
     paths = document.querySelectorAll("path");
     let _this = this;
     paths.forEach((e) => {
-      e.onmouseover = function () {   
+      e.onmouseover = function () {
         _this.filter = this.dataset.nameZh;
       };
     });
-    
   },
   computed: {
     // 顯示台灣地圖上的城鎮資訊
@@ -113,28 +113,38 @@ const app = Vue.createApp({
       this.weather_img = `./pics/weather-imgs/${val}.svg`;
     },
     // 依照不同天氣現象回傳圖片路徑
-    weather_img_path:function(val){
-        return `./pics/weather-imgs/${val}.svg`;
+    weather_img_path: function (val) {
+      return `./pics/weather-imgs/${val}.svg`;
     },
     // 更改日期
     change_date: function (date) {
       this.time = date;
     },
     // 更改地區
-    north_cities(loc){
-        return loc==2||loc==3||loc==13||loc==14||loc==16||loc==18||loc==21;
+    all_cities: function () {
+      this.temp_data = JSON.parse(JSON.stringify(this.weather_data));
     },
-    select_north_cities:function(){
-        let arr=[];
-        let north_index=[2,3,13,14,16,18,21]
-        let north=JSON.parse(JSON.stringify(this.weather_data));
-        north.forEach((loc,index)=>{
-            if(north_index.indexOf(index)!=-1){
-                arr.push(loc)
-            }
-        })
-        this.temp_data=JSON.parse(JSON.stringify(arr));
-    }
+    // select_north_cities:function(){
+    //     let arr=[];
+    //     let north_index=[2,3,13,14,16,18,21]
+    //     let north=JSON.parse(JSON.stringify(this.weather_data));
+    //     north.forEach((loc,index)=>{
+    //         if(north_index.indexOf(index)!=-1){
+    //             arr.push(loc)
+    //         }
+    //     })
+    //     this.temp_data=JSON.parse(JSON.stringify(arr));
+    // },
+    select_cities: function (cities) {
+      let arr = [];
+      let north = JSON.parse(JSON.stringify(this.weather_data));
+      north.forEach((loc, index) => {
+        if (cities.indexOf(index) != -1) {
+          arr.push(loc);
+        }
+      });
+      this.temp_data = JSON.parse(JSON.stringify(arr));
+    },
   },
 });
 app.mount("#app");
