@@ -1,17 +1,17 @@
 body{
-    background-image: url('../pics/bg.jpg');
+    background-image: url('../pics/weather-imgs/bg/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     overflow-x: hidden;
 }
 .wrapper{
-    padding-top: 300px;
+    padding-top: 100px;
 }
 #map{
     .map_and_card{
         z-index: 100000;
         position: sticky;
-        top: 100px;
+        top: 50px;
         .weather_card{
             display: none;
         }
@@ -19,6 +19,16 @@ body{
             .weather_card{
                 display: block;
             } 
+        }
+        svg{
+            width: 300px;
+            @media(max-width:1024px){
+                width: 200px;
+            }
+        }
+        .weather_card{
+            width: 300px;
+            margin: 0 auto;
         }
     }
     .UIV-icon{
@@ -41,6 +51,30 @@ body{
         }
         .danger{
             background: purple;
+        }
+    }
+}
+#selector{
+    .day-selector{
+        @media(max-width:768px){
+            display: flex;
+            justify-content: center;
+        }
+        .day{
+            width: 160px;
+        }
+    }
+    .area-selector{
+        @media(max-width:768px){
+            div{
+            display: flex;
+            justify-content: center;
+            }
+        }
+        .area{
+            width: 100px;
+            height: 30px;
+            margin-bottom: 15px;
         }
     }
 }
