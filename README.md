@@ -1,5 +1,6 @@
 # weatherCard
 天氣小卡，簡單、乾淨、快速查找近三天天氣資訊，讓你的每一天都是晴天
 
-參考資料
+參考資料、素材
 https://www.cwb.gov.tw/V8/assets/pdf/Weather_Icon.pdf
+https://www.videvo.net/video/cloud-and-sky-animated-background-flying-straight-up/578635/
