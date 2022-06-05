@@ -4,7 +4,6 @@
 線上立刻看
 https://chienniman.github.io/weatherCard/<br>
 
-參考資料
+參考的程式資料
 https://www.cwb.gov.tw/V8/assets/pdf/Weather_Icon.pdf<br>
-網站素材
-https://www.videvo.net/video/cloud-and-sky-animated-background-flying-straight-up/578635/
+
