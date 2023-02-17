@@ -1,12 +1,13 @@
 # weatherCard
-快速查詢台灣各縣市一周天氣預測，降雨機率、紫外線強度、天氣預報、溫度、舒適度，在這裡通通可以快速查詢<br>
+台灣各縣市一周天氣預測，降雨機率、紫外線強度、天氣預報、溫度、舒適度
 
 技術簡介
-Fetch/Axios串接中央氣象局的API，主要透過Vue.js、Bootstrap5進行資料的渲染與切版
+* 中央氣象局的API
+* Vue.js多時間段篩選
+* Bootstrap5精美介面
 
-線上立刻看
-https://chienniman.github.io/weatherCard/<br>
+![bdf](https://user-images.githubusercontent.com/97031067/219690379-2f38ae99-070c-4046-8780-060a8ef0ec85.png)
 
-參考的程式資料
+參考
 https://www.cwb.gov.tw/V8/assets/pdf/Weather_Icon.pdf<br>
 
